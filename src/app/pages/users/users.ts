@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './users.css',
 })
 export class Users {
-  users: String[] = ['João Pedro', 'Maria Silva', 'José Santos', 'Ana Costa'];
+  users: String[] = ['Pedro', 'Maria', 'Santos', 'Ana'];
 }
