@@ -1,4 +1,8 @@
-import { NgModule, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import {
+  NgModule,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
@@ -9,25 +13,12 @@ import { Footer } from './_components/footer/footer';
 import { BaseUi } from './_components/base-ui/base-ui';
 import { Users } from './pages/users/users';
 import { User } from './pages/user/user';
+import { UserCard } from './_components/user-card/user-card';
 
 @NgModule({
-  declarations: [
-    App,
-    Home,
-    Navbar,
-    Footer,
-    BaseUi,
-    Users,
-    User,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection()
-  ],
-  bootstrap: [App]
+  declarations: [App, Home, Navbar, Footer, BaseUi, Users, User],
+  imports: [BrowserModule, AppRoutingModule, UserCard],
+  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}
