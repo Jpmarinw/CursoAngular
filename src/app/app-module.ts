@@ -14,10 +14,11 @@ import { BaseUi } from './_components/base-ui/base-ui';
 import { Users } from './pages/users/users';
 import { User } from './pages/user/user';
 import { UserCard } from './_components/user-card/user-card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [App, Home, Navbar, Footer, BaseUi, Users, User],
-  imports: [BrowserModule, AppRoutingModule, UserCard],
+  imports: [BrowserModule, AppRoutingModule, UserCard, ReactiveFormsModule],
   providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
   bootstrap: [App],
 })

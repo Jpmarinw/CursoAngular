@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../_models/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +8,34 @@ import { User } from '../../_models/user';
   templateUrl: './users.html',
   styleUrl: './users.css',
 })
-export class Users {
+export class Users implements OnInit {
+  selectedUser: User | null = null;
+  userForms: FormGroup = new FormGroup({});
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.userForms = this.formBuilder.group({
+      nome: ['', [Validators.required, Validators.maxLength(250)]],
+      idade: ['', [Validators.required, Validators.min(12), Validators.max(120)]],
+    });
+  }
+
+  submitForm() {
+    if (this.userForms.valid) {
+      const newUser: User = {
+        nome: this.userForms.value.nome,
+        idade: this.userForms.value.idade,
+      };
+      this.users.push(newUser);
+      this.userForms.reset();
+    }
+  }
+
   users: User[] = [
     {
       nome: 'João Pedro',
@@ -38,4 +66,8 @@ export class Users {
       idade: 40,
     },
   ];
+
+  infoUserSelecionado(user: User) {
+    this.selectedUser = user;
+  }
 }
