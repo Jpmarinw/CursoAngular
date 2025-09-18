@@ -15,11 +15,12 @@ import { Users } from './pages/users/users';
 import { User } from './pages/user/user';
 import { UserCard } from './_components/user-card/user-card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [App, Home, Navbar, Footer, BaseUi, Users, User],
   imports: [BrowserModule, AppRoutingModule, UserCard, ReactiveFormsModule],
-  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
+  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection(), provideHttpClient()],
   bootstrap: [App],
 })
 export class AppModule {}
