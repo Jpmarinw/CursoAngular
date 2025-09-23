@@ -1,10 +1,30 @@
-<div class="card">
-  <img [src]="user?.avatar_url" alt="" class="card-img-top" />
-  <div class="card-body">
-    <h5 class="card-title">{{ user?.login }}</h5>
-    <p class="card-text">Nome: {{ user?.name }}</p>
-    <p class="card-text">Seguidores: {{ user?.followers }}</p>
-    <p class="card-text">Seguindo: {{ user?.following }}</p>
-    <a [href]="user?.html_url" target="_blank" class="btn btn-primary">Ver Perfil</a>
+<section class="container my-4">
+  <form class="input-group mb-3" (submit)="$event.preventDefault(); searchUser()">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Busque por um username"
+      aria-label="Busque por um username"
+      [(ngModel)]="usernameToSearch"
+      name="username"
+    />
+    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+  </form>
+
+  @if (user){
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <img [src]="user.avatar_url" alt="Avatar do usuário" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title">{{ user.login }}</h5>
+          <p class="card-text">Nome: {{ user.name }}</p>
+          <p class="card-text">Seguidores: {{ user.followers }}</p>
+          <p class="card-text">Seguindo: {{ user.following }}</p>
+          <a [href]="user.html_url" target="_blank" class="btn btn-primary">Ver Perfil</a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  }
+</section>

@@ -1,6 +1,5 @@
-import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../_services/user-service';
-import { User } from '../../_models/user';
 import { UserGit } from '../../_models/userGit';
 
 @Component({
@@ -9,17 +8,27 @@ import { UserGit } from '../../_models/userGit';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit {
+export class Home {
   user: UserGit | undefined;
+
+  usernameToSearch: string = '';
+
   constructor(private userService: UserService) {}
 
-  ngOnInit(): void {
-    this.getGitUser();
-  }
+  searchUser() {
+    if (!this.usernameToSearch) {
+      alert('Por favor, insira um nome de usuário do GitHub.');
+      return;
+    }
 
-  getGitUser() {
-    this.userService.getGitUser('facebook').subscribe((response: UserGit) => {
-      this.user = response;
+    this.userService.getGitUser(this.usernameToSearch).subscribe({
+      next: (response: UserGit) => {
+        this.user = response;
+      },
+      error: (err) => {
+        this.user = undefined;
+        alert('Usuário não encontrado!');
+      },
     });
   }
 }
